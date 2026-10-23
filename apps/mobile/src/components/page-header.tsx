@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import { ThemedText } from './themed-text';
 import { Spacing } from '@/constants/theme';
+import { ThemedText } from './themed-text';
 
 interface PageHeaderProps {
   breadcrumb?: string;
