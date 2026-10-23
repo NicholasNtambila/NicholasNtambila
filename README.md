@@ -1,19 +1,19 @@
-# Welcome to your Expo app 👋
+# SaNi Tech Business Manager
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Multi-tenant business management SaaS for businesses in Zambia. The repository is being migrated incrementally to an npm-workspaces monorepo.
 
 ## Get started
 
 1. Install dependencies
 
    ```bash
-   npm install
+   npm ci
    ```
 
 2. Start the app
 
    ```bash
-   npx expo start
+   npm run start
    ```
 
 In the output, you'll find options to open the app in a
@@ -23,23 +23,56 @@ In the output, you'll find options to open the app in a
 - [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
 - [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+The Expo application is in `apps/mobile` and uses Expo Router. Shared, cross-platform code belongs in `packages/shared`.
 
-## Get a fresh project
+## Verification
 
-When you're ready, run:
+Run lint, type-check, unit tests, doctor, and formatting checks with:
 
 ```bash
-npm run reset-project
+npm run verify
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Deployment & Production Builds
 
-### Other setup steps
+### 1. Web Deployment
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+Build the static web distribution to `apps/mobile/dist`:
+
+```bash
+npm run build:web
+```
+
+The output can be deployed to any static host (Vercel, Cloudflare Pages, Netlify, or EAS Hosting).
+
+### 2. Mobile App Deployment (Android & iOS with EAS)
+
+The project includes EAS configuration (`eas.json`) with development, preview, and production profiles:
+
+- **EAS CLI**: Run with `npx eas-cli@latest <command>`
+- **Build Direct Android APK (Downloadable directly on Android phones)**:
+  ```bash
+  npx eas-cli@latest build --platform android --profile preview
+  ```
+  *Produces an installable `.apk` file with a QR code and direct download link.*
+- **Build iOS (Internal / TestFlight)**:
+  ```bash
+  npx eas-cli@latest build --platform ios --profile preview
+  ```
+- **Build iOS Simulator**:
+  ```bash
+  npx eas-cli@latest build --platform ios --profile preview-simulator
+  ```
+- **Build Production Apps (Google Play AAB & App Store IPA)**:
+  ```bash
+  npx eas-cli@latest build --platform all --profile production
+  ```
+- **Submit to App Stores**:
+  ```bash
+  npx eas-cli@latest submit --platform all
+  ```
+
+See [development setup](docs/development.md) for environment, tooling, and verification details.
 
 ## Learn more
 

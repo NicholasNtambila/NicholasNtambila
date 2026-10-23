@@ -1,0 +1,33 @@
+project_id = "sunga-manager"
+
+[api]
+enabled = true
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54322
+shadow_port = 54320
+
+[db.migrations]
+enabled = true
+schema_paths = []
+
+[db.seed]
+enabled = false
+
+[auth]
+enabled = true
+site_url = "http://localhost:8081"
+additional_redirect_urls = [
+  "sungamanager://",
+]
+
+[auth.email]
+enable_confirmations = true
+otp_length = 6
+
+[auth.email.template.confirmation]
+subject = "Your SaNi Tech verification code"
+content_path = "./supabase/templates/confirmation.html"

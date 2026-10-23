@@ -1,0 +1,58 @@
+{
+  "expo": {
+    "name": "SaNi Tech Manager",
+    "description": "SaNi Tech Business Management System - Retail POS, Digital Services, Micro-Expenses, and Multi-Branch Analytics",
+    "slug": "sunga-manager",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "scheme": "sungamanager",
+    "userInterfaceStyle": "automatic",
+    "ios": {
+      "bundleIdentifier": "com.sanitech.sungamanager",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "Use Face ID or Touch ID to quickly and securely log into your SaNi Tech workspace."
+      }
+    },
+    "android": {
+      "package": "com.sanitech.sungamanager",
+      "permissions": ["USE_BIOMETRIC", "USE_FINGERPRINT"],
+      "adaptiveIcon": {
+        "backgroundColor": "#E6F4FE",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundImage": "./assets/images/android-icon-background.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "output": "static",
+      "favicon": "./assets/images/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0B2027",
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 76
+        }
+      ],
+      "expo-sqlite",
+      "expo-secure-store",
+      "expo-sharing",
+      [
+        "expo-local-authentication",
+        {
+          "faceIDPermission": "Use Face ID or Touch ID to quickly and securely log into your SaNi Tech workspace."
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "reactCompiler": true
+    }
+  }
+}
